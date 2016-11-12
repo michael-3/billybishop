@@ -3,13 +3,24 @@
 import sys
 import dateutil.parser as dparser
 from nltk.tokenize.mwe import MWETokenizer
+import csv
+
+def load_city_tokens():
+  """Loads tokens to use with MWETokenizer from cities.csv."""
+  tokens = []
+  with open('cities.csv') as f:
+    for (city, _) in csv.reader(f):
+	tokens.append(tuple(city.split('_')))
+  print tokens
+  return tokens
+
+CITY_TOKENS = load_city_tokens()
 
 # returns a map of {'origin' : departure_location, 'destination' : arrival_location}
 def get_route(msg):
-	split = msg.split(" ")
-	tokenizer = MWETokenizer([('san','francisco'), ('hong','kong'), ('new','york','city'),('los','angeles')])
+	tokenizer = MWETokenizer(CITY_TOKENS)
 	route = {'origin' : None, 'destination' : None}
-	tokens = tokenizer.tokenize(split)
+	tokens = tokenizer.tokenize(msg.split(' '))
 	for i in xrange(len(tokens)):
 		# fuzzy matching here?
 		if tokens[i] == 'from':
