@@ -5,15 +5,18 @@ from amadeus import Flights
 import simplejson as json
 import sys
 from parser import get_route, get_departure
+import csv
 
-IATA_CODES = {
-  'new_york_city': 'NYC',
-  'chicago': 'CHI',
-  'los_angeles': 'LAX',
-  'houston': 'HOU',
-  'san_fransisco': 'SFO'
-}
+def load_iata_codes():
+  """Loads city->airport code mappings from cities.csv."""
+  codes = {}
+  with open('cities.csv') as f:
+    for (city, airport) in csv.reader(f):
+      codes[city] = airport
+  print codes
+  return codes
 
+IATA_CODES = load_iata_codes()
 
 DEFAULT_ORIGIN = 'SFO'
 DEFAULT_DEPARTURE_DATE = '2016-11-12'
