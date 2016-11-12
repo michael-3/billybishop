@@ -2,6 +2,7 @@ import sys
 import dateutil.parser as dparser
 from nltk import word_tokenize
 
+# returns a map of {'origin' : departure_location, 'destination' : arrival_location}
 def get_route(msg):
 	tokens = msg.split(" ")
 	route = {'origin' : None, 'destination' : None}
