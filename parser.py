@@ -34,7 +34,8 @@ def get_route(msg):
 
 def get_departure(msg):
     try:
-        """Parses a date somewhere in msg and returns a map with key 'departure'."""
+        """Parses a date somewhere in msg and returns
+           a map with key 'departure'."""
         date_time = dparser.parse(msg, fuzzy=True, yearfirst=True)
     except ValueError:
         return None
