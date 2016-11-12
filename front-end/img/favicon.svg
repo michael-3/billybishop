@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <ellipse id="path-1" cx="8.94999981" cy="8.36999989" rx="8.69999981" ry="8.36999989"></ellipse>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="17.3999996" height="16.7399998" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <path d="M2.05011752,0.326495163 C2.16084367,-0.0566796877 2.34288373,-0.0479676712 2.45109236,0.326495163 L3.33323699,3.3792127 C3.44396313,3.76238756 3.19823348,4.07301215 2.80520766,4.07301215 L1.69600222,4.07301215 C1.29365353,4.07301215 1.05976426,3.75367554 1.16797289,3.3792127 L2.05011752,0.326495163 Z" id="path-3"></path>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2.21830543" height="4.03064051" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <ellipse id="path-5" cx="5.92850958" cy="2.21378674" rx="1.28324997" ry="1.28499997"></ellipse>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2.56649994" height="2.56999993" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+    </defs>
+    <g id="Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-57.000000, -44.000000)">
+            <g id="Group-2" transform="translate(40.000000, 44.000000)">
+                <g id="Logo" transform="translate(17.000000, 0.000000)">
+                    <use id="Oval-10" stroke="#354B5E" mask="url(#mask-2)" stroke-width="3" xlink:href="#path-1"></use>
+                    <g id="Group" transform="translate(8.915409, 8.244305) rotate(-45.000000) translate(-8.915409, -8.244305) translate(2.915409, 6.244305)">
+                        <path d="M9.31998457,0.345961531 C9.43072198,-0.03721332 9.61278056,-0.0285013036 9.72100019,0.345961531 L10.6032345,3.39867907 C10.713972,3.78185392 10.4682173,4.09247851 10.0751515,4.09247851 L8.96583325,4.09247851 C8.56344364,4.09247851 8.32953058,3.77314191 8.43775022,3.39867907 L9.31998457,0.345961531 Z" id="Triangle-1" fill="#354B5E" transform="translate(9.520611, 2.077158) rotate(90.000000) translate(-9.520611, -2.077158) "></path>
+                        <use id="Triangle-1" stroke="#354B5E" mask="url(#mask-4)" transform="translate(2.250723, 2.057692) scale(-1, -1) rotate(90.000000) translate(-2.250723, -2.057692) " xlink:href="#path-3"></use>
+                        <use id="Oval-2" stroke="#354B5E" mask="url(#mask-6)" stroke-width="4" xlink:href="#path-5"></use>
+                    </g>
+                    <rect id="Rectangle-9" fill="#354B5E" x="8.63999939" y="2.82999992" width="0.75" height="1.25" rx="0.375"></rect>
+                    <rect id="Rectangle-9-Copy-2" fill="#354B5E" transform="translate(13.824999, 8.404999) rotate(90.000000) translate(-13.824999, -8.404999) " x="13.4499989" y="7.77999878" width="0.75" height="1.25" rx="0.375"></rect>
+                    <rect id="Rectangle-9-Copy-2" fill="#354B5E" transform="translate(4.025000, 8.404999) rotate(90.000000) translate(-4.025000, -8.404999) " x="3.64999962" y="7.77999878" width="0.75" height="1.25" rx="0.375"></rect>
+                    <rect id="Rectangle-9-Copy" fill="#354B5E" x="8.63999939" y="12.5799999" width="0.75" height="1.25" rx="0.375"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
