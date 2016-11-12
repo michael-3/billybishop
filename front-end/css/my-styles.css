@@ -1,0 +1,386 @@
+/* Custom
+================================= */
+
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: 'Roboto', Arial;
+}
+
+
+#team-tag{
+	color: white;
+}
+
+#app-container{
+	top: 0px;
+	overflow: auto;
+	min-height: 1200px;
+	height: 100%;
+	width: 100%;
+	background-color: #002d53;
+}
+
+#mascot-section{
+	margin-top:  30px;
+}
+
+#main-input-form{
+	margin: 20px auto;
+	width: 200px;
+}
+
+#main-input-box{
+	margin:0 auto;
+    width: 150px;
+}
+
+#main-input-field{
+	border: none;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+#greeting{
+	margin: 0 auto;
+	width: 40%;
+}
+
+#greeting h1{
+	color:white;
+	text-align: center;
+}
+
+
+
+/* Typography
+================================= */
+
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot');
+	src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/icomoon.woff') format('woff'),
+		url('../fonts/icomoon.ttf') format('truetype'),
+		url('../fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+h1 {
+	font-weight: 200;
+	margin-bottom: 30px;
+	color: #5f5d60;
+}
+h2, h3 {
+	font-size: 1.25em;
+	color: #5f5d60;
+	margin-bottom: 16px;
+	margin-top: 0;
+}
+p {
+	color: #b3aeb5;
+	line-height: 1.7;
+	font-size: 1.1em;
+	font-weight: 200;
+}
+strong {
+	color: #5f5d60;
+}
+.navbar-text {
+	font-weight: bold;
+	margin-right: 0;
+}
+.lead {
+	color: #d5c1f2;
+	margin-bottom: 20px;
+}
+.lead:nth-of-type(2) {
+	font-size: initial;
+	margin-bottom: 20px;
+}
+.main-footer {
+	font-size: .95em;
+}
+.link-list {
+	list-style-type: none;
+	line-height: 1.8;
+	margin: 0;
+	padding: 0;
+}
+.copyright {
+	opacity: .8;
+	font-size: .9em;
+}
+
+/* Links
+================================= */
+
+.main-footer a {
+	color: #a6afb2;
+}
+.link-list .heading {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+/* Layout
+================================= */
+.navbar{
+	background-color: #002d53;
+	border: none;
+}
+
+hr {
+	margin-bottom: 58px;
+}
+.ft {
+	margin-bottom: 72px;
+}
+.ft-copy {
+	padding-top: 32px;
+}
+.ft-copy p,
+.copy-offset { 
+	width: 88%;
+}
+.panel {
+	background-image: url('../img/form-panel-bg.png');
+	background-repeat: repeat-x;
+	border-bottom: solid 1px #eee;
+	padding: 42px 0;
+	margin: 80px 0 132px 0;
+}
+.callout {
+	padding: 35px 0;
+	margin-top: 64px;
+	text-align: center;
+	border: 1px solid #e3e3e3;
+	border-right: none;
+	border-left: none;
+}
+.callout .glyphicon {
+	margin-left: 10px;
+}
+.teacher-desc strong {
+	display: block;
+}
+.th-copy {
+	padding-top: 30px;
+}
+.main-footer {
+	margin: 100px 0 80px 0;
+}
+
+#page-title{
+	margin-bottom: 25px;
+}
+
+/* Form
+================================= */
+
+.phone-txt {
+	padding: 24px 12px;
+	width: 90%;
+}
+.btn-submit {
+	color: inherit;
+	font-size: 1.6em;
+	background: transparent;
+	position: absolute;
+	right: 55px;
+	bottom: 3px;
+}
+
+
+/* Buttons
+================================= */
+
+.btn-default {
+	border-width: 2px;
+	border-color: inherit;
+	margin-right: 10px;
+	padding: 12px 22px;
+}
+.btn-default:hover {
+	background-color: #fff;
+	color: #957bba;
+	border-color: #fff;
+}
+.btn:active {
+	box-shadow: none;
+}
+.panel .btn-default:hover {
+	background-color: #ccc;
+	color: #f7f7f7;
+	border-color: #ccc;
+}
+.btn-success {
+	box-shadow: 0 3px 0 #23812f;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	font-size: 1.5em;
+	width: 330px;
+	padding: 15px 0;
+}
+
+/* Jumbotron
+================================= */
+
+.jumbotron {
+	background-color: white;
+	background: url('../img/Background-Icons.png') repeat;
+	padding: 100px 0 50px 0;
+	margin-bottom: 30px;
+}
+.jumbotron h1{
+	font-size: 48pt;
+	color: black;
+	background-color: white;
+	padding: 5px;
+	margin: 15px auto 18px auto;
+	width: 85%;
+}
+.device {
+	width: 345px;
+	height: 589px;
+	background: url('../img/device-hero.png') no-repeat;
+}
+
+#center-demo{
+	display:block;
+    margin:auto;
+}
+
+#center-demo-xs{
+	display:block;
+    margin:auto;
+    width: 90%;
+}
+
+
+
+
+/* Logos & Icons
+================================= */
+
+.main-logo {
+	color: white;
+	width: 150px;
+	height: 50px;
+	margin-top: 22px;	
+	text-indent: 100%;
+	white-space: nowrap;
+}
+.ft-icon {
+	width: 94%;
+	height: 196px;
+	position: relative;
+	background: #8c73b0 url('../img/main-bg.png') no-repeat 270px -180px;
+	background-size: 140%;
+}
+.ft-icon.friends {
+	background-position: -500px 0px;
+}
+.ft-icon.cloud {
+	background-position: 260px 0px;
+}
+.ft-icon:before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 164px;
+	height: 102px;
+  	top: 0;
+  	right: 0;
+  	bottom: 0;
+  	left: 0;
+	margin: auto;
+	background: url('../img/feature-icons.png') no-repeat;
+	background-size: 100%;
+}
+.friends:before {
+	background-position: 0 -105px;
+}
+.cloud:before {
+	background-position: 0 -210px;
+}
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	margin-right: 8px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.th-logo {
+	width: 155px;
+	margin: -.75em 0 .95em 0;
+}
+
+.icon{
+	display:block;
+    margin:auto;
+    margin-bottom: 20px;
+    fill: #5f5d60;
+}
+
+
+/* Media Queries
+================================= */
+
+@media (max-width: 991px) {
+	.jumbotron {
+		padding-top: 120px;
+		padding-bottom: 20px;
+		background-position: 10% 10%;
+	}
+	.ft-copy {
+		padding-top: 12px;
+	}
+	.ft-copy p {
+		width: auto;
+	}
+	.device {
+		margin-top: 28px;
+	}
+}
+@media (max-width: 767px) {
+	.navbar {
+		min-height: 60px;
+	}
+	.main-logo {
+		width: 82px;
+		margin-top: 20px;
+	}
+	.jumbotron {
+		padding-top: 80px;
+		margin-bottom: 32px;
+	}
+	.lead {
+		margin-bottom: 40px;
+	}
+	.ft {
+		margin-bottom: 16px;
+	}
+	hr {
+		margin-bottom: 40px;
+	}
+	.btn-success {
+		width: 85%;
+		font-size: initial;
+	}
+	.callout, 
+	.link-list {
+		margin-top: 32px;
+	}
+	.main-footer {
+		margin-top: 64px;
+	}
+	.link-list {
+		float: left;
+		margin-right: 32px;
+	}
+}

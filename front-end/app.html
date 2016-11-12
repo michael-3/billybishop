@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Compass Analytics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/roboto.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/my-styles.css?id=123" rel="stylesheet" media="screen">
+    <script src="js/jquery.js"> </script>
+    <script src="js/typed.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="app-container">
+      <div id="mascot-section">
+        <img src="img/billy-head.png" id="center-demo">
+        <div id="greeting">
+        </div>
+      </div>
+      <div>
+      <div id="app-content">
+        <div id="main-input-form">
+          <form>
+          <div id="main-input-box">
+            <input id="main-input-field" type="text"> 
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    $("#main-input-field").keypress(function(event) {
+      if(event.which == 13) {
+          event.preventDefault();
+          loadData($("#main-input-field").val());
+          $("#main-input-field").val("");
+      }
+    });
+
+    $(function(){
+      $("#greeting").typed({
+        strings: ["<h1> Hi, let's get started </h1>"],
+        typeSpeed: 30,
+        showCursor: false
+      });
+    });
+
+    function loadData(text){
+      text = "<div>" + text +"</div>";
+      $(text).hide().appendTo("#greeting").fadeIn(1000);
+    }
+    </script>
+
+  </body>
+</html>
