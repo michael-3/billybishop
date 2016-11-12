@@ -15,6 +15,7 @@ IATA_CODES = {
 
 DEFAULT_ORIGIN = 'SFO'
 DEFAULT_DEPARTURE_DATE = '2016-11-12'
+NUM_RESULTS = 10
 
 def get_api_key():
   return os.environ['AMADEUS_KEY']
@@ -30,10 +31,11 @@ def find_flights(destination,
   searcher = get_flight_searcher()
   if destination.lower() in IATA_CODES:
     destination = IATA_CODES[destination.lower()]
-  return searcher.inspiration_search(
+  return searcher.low_fare_search(
     destination=destination,
     origin=origin,
-    departure_date=departure_date)
+    departure_date=departure_date,
+    number_of_results=NUM_RESULTS)
 
 # for testing (for example: ./flight_finder.py BOM | python -m json.tool)
 if __name__ == '__main__':
