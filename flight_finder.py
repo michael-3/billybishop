@@ -38,7 +38,7 @@ def find_flights(message):
     """Parses the message and returns low fare flights."""
     origin = None
     destination = None
-    time = None
+    departure_date = None
 
     route = get_route(message)
     origin = route.get('origin', None)
@@ -47,14 +47,14 @@ def find_flights(message):
     print destination
     print message
 
-    time = get_departure(message)
+    departure_date = get_departure(message)
 
-    if time:
-        time = time['departure']
+    if departure_date:
+        departure_date = departure_date['departure']
 
-    if not (time and origin and time):
+    if not (departure_date and origin and destination):
         return reask(
-            time is not None,
+            departure_date is not None,
             destination is not None,
             origin is not None)
 
@@ -62,13 +62,13 @@ def find_flights(message):
         origin = IATA_CODES[origin.lower()]
     if destination.lower() in IATA_CODES:
         destination = IATA_CODES[destination.lower()]
-    
+
     searcher = get_flight_searcher()
 
     return searcher.low_fare_search(
         destination=destination,
         origin=origin,
-        departure_date=time,
+        departure_date=departure_date,
         number_of_results=NUM_RESULTS)
 
 
