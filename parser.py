@@ -33,7 +33,10 @@ def get_route(msg):
 
 
 def get_departure(msg):
-    date_time = dparser.parse(msg, fuzzy=True, yearfirst=True)
+    try:
+        date_time = dparser.parse(msg, fuzzy=True, yearfirst=True)
+    except ValueError:
+        return None
     departure = {'departure': str(date_time.date())}
     return departure
 
