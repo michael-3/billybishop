@@ -4,7 +4,7 @@ from nltk import word_tokenize
 
 def get_route(msg):
 	tokens = msg.split(" ")
-	route = {}
+	route = {'origin' : None, 'destination' : None}
 	for i in xrange(len(tokens)):
 		# fuzzy matching here?
 		if tokens[i] == 'from':
