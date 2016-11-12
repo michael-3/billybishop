@@ -12,8 +12,8 @@ def main_app():
   return render_template('index.html')
 
 @app.route('/search', methods=['GET'])
-def login():
-  return json.dumps(find_flights(request.args.get('destination')))
+def search():
+  return json.dumps(find_flights(request.args.get('query')))
 
 if __name__ == '__main__':
   app.run()
