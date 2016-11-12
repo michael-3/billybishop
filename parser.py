@@ -2,7 +2,8 @@ import sys
 import dateutil.parser as dparser
 from nltk import word_tokenize
 
-def get_route(tokens):
+def get_route(msg):
+	tokens = msg.split(" ")
 	route = {}
 	for i in xrange(len(tokens)):
 		# fuzzy matching here?
@@ -20,5 +21,4 @@ def get_departure(msg):
 
 if __name__ == '__main__':
 	msg = sys.argv[1]
-	text = msg.split(" ")
-	print get_route(text), get_departure(msg)
+	print get_route(msg), get_departure(msg)
