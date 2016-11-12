@@ -21,7 +21,7 @@ def get_route(msg):
 	tokenizer = MWETokenizer(CITY_TOKENS)
 	route = {'origin' : None, 'destination' : None}
 	tokens = tokenizer.tokenize(msg.split(' '))
-	for i in xrange(len(tokens)):
+	for i in xrange(len(tokens) - 1):
 		# fuzzy matching here?
 		if tokens[i] == 'from':
 			route['origin'] = tokens[i+1]
