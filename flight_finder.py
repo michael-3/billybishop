@@ -59,9 +59,10 @@ def find_flights(message):
 
     if origin.lower() in IATA_CODES:
         origin = IATA_CODES[origin.lower()]
-        if destination.lower() in IATA_CODES:
-            destination = IATA_CODES[destination.lower()]
-            searcher = get_flight_searcher()
+    if destination.lower() in IATA_CODES:
+        destination = IATA_CODES[destination.lower()]
+    
+    searcher = get_flight_searcher()
 
     return searcher.low_fare_search(
         destination=destination,
