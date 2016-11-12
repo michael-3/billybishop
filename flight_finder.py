@@ -13,7 +13,6 @@ def load_iata_codes():
   with open('cities.csv') as f:
     for (city, airport) in csv.reader(f):
       codes[city] = airport
-  print codes
   return codes
 
 IATA_CODES = load_iata_codes()
