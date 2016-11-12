@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys
 import dateutil.parser as dparser
 from nltk.tokenize.mwe import MWETokenizer

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 from flask import Flask, render_template, request
 from flight_finder import find_flights
