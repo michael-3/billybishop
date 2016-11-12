@@ -38,14 +38,23 @@ def find_flights(message):
   origin = route.get('origin', None)
   destination = route.get('destination', None)
 
-  departure = get_departure(message)
-  
-  if not (departure and origin and time):
+  print destination
+
+  print message
+  time = get_departure(message)
+
+  if time:
+    time = time['departure']
+
+ 
+  if not (time and origin and time):
     return reask(time is not None,
                  destination is not None,
                  origin is not None)
 
 
+  if origin.lower() in IATA_CODES:
+    origin = IATA_CODES[origin.lower()]
   if destination.lower() in IATA_CODES:
     destination = IATA_CODES[destination.lower()]
   searcher = get_flight_searcher()
