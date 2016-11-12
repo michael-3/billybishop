@@ -5,6 +5,14 @@ from amadeus import Flights
 import simplejson as json
 import sys
 
+IATA_CODES = {
+  'new york city': 'NYC',
+  'chicago': 'CHI',
+  'los angeles': 'LAX',
+  'houston': 'HOU',
+}
+
+
 DEFAULT_ORIGIN = 'SFO'
 DEFAULT_DEPARTURE_DATE = '2016-11-12'
 
@@ -15,10 +23,13 @@ def get_flight_searcher():
   api_key = get_api_key()
   return Flights(api_key)
 
+
 def find_flights(destination,
                  origin=DEFAULT_ORIGIN,
                  departure_date=DEFAULT_DEPARTURE_DATE):
   searcher = get_flight_searcher()
+  if destination.lower() in IATA_CODES:
+    destination = IATA_CODES[destination.lower()]
   return searcher.inspiration_search(
     destination=destination,
     origin=origin,
