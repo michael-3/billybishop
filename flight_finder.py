@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-import os
 from amadeus import Flights
-import simplejson as json
-import sys
 from parser import get_route, get_departure
 import csv
+import os
+import simplejson as json
+import sys
 
 
 def load_iata_codes():

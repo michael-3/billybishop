@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-import sys
-import dateutil.parser as dparser
 from nltk.tokenize.mwe import MWETokenizer
 import csv
+import dateutil.parser as dparser
+import sys
 
 
 def load_city_tokens():
