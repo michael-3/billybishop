@@ -35,6 +35,7 @@ def get_flight_searcher():
 
 
 def find_flights(message):
+    """Parses the message and returns low fare flights."""
     origin = None
     destination = None
     time = None
@@ -72,6 +73,7 @@ def find_flights(message):
 
 
 def reask(time_provided, destination_provided, origin_provided):
+    """Returns a message that prompts for missing information."""
     mapping = {
         (False, False, False): 'Please provide flight details',
         (False, False, True): 'Please provide destination and departure date',
