@@ -7,11 +7,11 @@ import sys
 from parser import get_route, get_departure
 
 IATA_CODES = {
-  'new york city': 'NYC',
+  'new_york_city': 'NYC',
   'chicago': 'CHI',
-  'los angeles': 'LAX',
+  'los_angeles': 'LAX',
   'houston': 'HOU',
-  'san fransisco': 'SFO'
+  'san_fransisco': 'SFO'
 }
 
 
