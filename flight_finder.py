@@ -35,53 +35,72 @@ def get_flight_searcher():
 
 
 def find_flights(message):
+    """Parses the message and returns low fare flights."""
     origin = None
     destination = None
-    time = None
+    departure_date = None
 
     route = get_route(message)
     origin = route.get('origin', None)
     destination = route.get('destination', None)
 
-    print destination
-    print message
 
-    time = get_departure(message)
+    departure_date = get_departure(message)
 
-    if time:
-        time = time['departure']
+    if departure_date:
+        departure_date = departure_date['departure']
 
-    if not (time and origin and time):
+
+    if not (departure_date and origin and destination):
         return reask(
-            time is not None,
-            destination is not None,
-            origin is not None)
+            departure_date,
+            destination,
+            origin)
 
     if origin.lower() in IATA_CODES:
         origin = IATA_CODES[origin.lower()]
-        if destination.lower() in IATA_CODES:
-            destination = IATA_CODES[destination.lower()]
-            searcher = get_flight_searcher()
+    if destination.lower() in IATA_CODES:
+        destination = IATA_CODES[destination.lower()]
+
+    searcher = get_flight_searcher()
 
     return searcher.low_fare_search(
         destination=destination,
         origin=origin,
-        departure_date=time,
+        departure_date=departure_date,
         number_of_results=NUM_RESULTS)
 
 
-def reask(time_provided, destination_provided, origin_provided):
-    mapping = {
-        (False, False, False): 'Please provide flight details',
-        (False, False, True): 'Please provide destination and departure date',
-        (False, True, False): 'Please provide origin and departure date',
-        (True, False, False): 'Please provide origin and destination',
-        (False, True, True): 'Please provide departure time',
-        (True, False, True): 'Please provide destination',
-        (True, True, False): 'Please provide origin'
-    }
-    return mapping[(time_provided, destination_provided, origin_provided)]
+def reask(departure_date, destination, origin):
+    """Returns a message that prompts for missing information."""
+    response = {}
 
+    if (not departure_date) and (not destination) and (not origin):
+        response['message'] = 'Let us know your travel plans!'
+    elif (not departure_date) and (not destination) and origin:
+        response['message'] = 'Where do you want to go from {0}, and when are you leaving?'.format(origin)
+    elif (not departure_date) and destination and (not origin):
+        response['message'] = 'Nice, {0} is great this time of year! When are you leaving, and where from?'.format(destination)
+    elif departure_date and (not destination) and (not origin):
+        response['message'] = 'That\'s a good time for a trip! Where are you travelling between?'
+    elif (not departure_date) and destination and origin:
+        response['message'] = 'Sounds like a great trip! When would you like to leave?'
+    elif departure_date and (not destination) and origin:
+        response['message'] = 'Where are you planning to go?'
+    elif departure_date and destination and (not origin):
+        response['message'] = 'That\'s a great time to visit {0}! Where will you be departing from?'
+      
+
+    if departure_date:
+        response['departure_date'] = departure_date
+    if destination:
+        response['destination'] = destination
+    if origin:
+        response['origin'] = origin
+
+    response['status'] = 'FAILURE'
+
+    return json.dumps(response)
 
 # for testing (for example: ./flight_finder.py BOM | python -m json.tool)
 if __name__ == '__main__':
