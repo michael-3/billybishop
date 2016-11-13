@@ -37,7 +37,9 @@ int levenshtein(const char *s1, int len1, const char *s2, int len2) {
 
 	// printf("Dist for '%s' to '%s' is %d\n", s1, s2, matrix[rows*cols-1]);
 
-	return matrix[rows * cols - 1];
+	int result = matrix[rows * cols - 1];
+	free(matrix);
+	return result;
 }
 
 
