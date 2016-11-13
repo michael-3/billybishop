@@ -34,20 +34,17 @@ def get_flight_searcher():
     return Flights(api_key)
 
 
-def find_flights(message):
+def find_flights(message, origin=None, destination=None, departure_date=None):
     """Parses the message and returns low fare flights."""
-    origin = None
-    destination = None
-    departure_date = None
-
     route = get_route(message)
-    origin = route.get('origin', None)
-    destination = route.get('destination', None)
+    
+    if 'origin' in route and route['origin']:
+      origin = route['origin']
+    if 'destination' in route and route['destination']:
+      destination = route['destination']
 
-    departure_date = get_departure(message)
-
-    if departure_date:
-        departure_date = departure_date['departure']
+    if get_departure(message):
+      departure_date = get_departure(message)['departure']
 
     if not (departure_date and origin and destination):
         return reask(
@@ -86,7 +83,7 @@ def reask(departure_date, destination, origin):
     elif departure_date and (not destination) and origin:
         response['message'] = 'Where are you planning to go?'
     elif departure_date and destination and (not origin):
-        response['message'] = 'That\'s a great time to visit {0}! Where will you be departing from?'
+        response['message'] = 'That\'s a great time to visit {0}! Where will you be departing from?'.format(destination)
 
     if departure_date:
         response['departure_date'] = departure_date

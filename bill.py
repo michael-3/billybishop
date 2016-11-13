@@ -16,8 +16,10 @@ def main_app():
 
 @app.route('/search', methods=['GET'])
 def search():
-    return json.dumps(find_flights(request.args.get('query')))
-
+    return json.dumps(find_flights(request.args.get('query'),
+                                   origin=request.args.get('origin'),
+                                   destination=request.args.get('destination'),
+                                   departure_date=request.args.get('departure_date')))
 
 if __name__ == '__main__':
     app.run()
