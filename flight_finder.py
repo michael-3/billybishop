@@ -52,11 +52,13 @@ def find_flights(message):
     if departure_date:
         departure_date = departure_date['departure']
 
+    print departure_date
+
     if not (departure_date and origin and destination):
         return reask(
-            departure_date is not None,
-            destination is not None,
-            origin is not None)
+            departure_date,
+            destination,
+            origin)
 
     if origin.lower() in IATA_CODES:
         origin = IATA_CODES[origin.lower()]
@@ -72,7 +74,7 @@ def find_flights(message):
         number_of_results=NUM_RESULTS)
 
 
-def reask(time_provided, destination_provided, origin_provided):
+def reask(departure_date, destination, origin):
     """Returns a message that prompts for missing information."""
     mapping = {
         (False, False, False): 'Please provide flight details',
@@ -83,8 +85,20 @@ def reask(time_provided, destination_provided, origin_provided):
         (True, False, True): 'Please provide destination',
         (True, True, False): 'Please provide origin'
     }
-    return mapping[(time_provided, destination_provided, origin_provided)]
+    response = {}
+    response['new_message'] = mapping[(departure_date is not None),
+                              (destination is not None),
+                              (origin is not None)]
+    if departure_date:
+        response['departure_date'] = departure_date
+    if destination:
+        response['destination'] = destination
+    if origin:
+        response['origin'] = origin
 
+    response['status'] = 'FAILURE'
+
+    return json.dumps(response)
 
 # for testing (for example: ./flight_finder.py BOM | python -m json.tool)
 if __name__ == '__main__':
