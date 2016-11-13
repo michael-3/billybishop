@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #app-container{
 	top: 0px;
 	overflow: auto;
-	min-height: 900px;
+	min-height: 1200px;
 	height: 100%;
 	width: 100%;
 	background-color: #002d53;
