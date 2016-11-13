@@ -128,4 +128,4 @@ def get_departure(msg):
 if __name__ == '__main__':
     msg = sys.argv[1]
     print get_route(msg), get_departure(msg)
-    print get_route2(msg), get_departure(msg)
+    #print get_route2(msg), get_departure(msg)
