@@ -107,6 +107,10 @@
         return flightInfo.message;
       }
 
+      if(flightInfo.status === "INTELLIGENCE"){
+        return flightInfo.message;
+      }
+
       console.log(flightInfo);
       var results = flightInfo.results;
       console.log(results);
