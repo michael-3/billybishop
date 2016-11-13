@@ -7,10 +7,7 @@
 
 static const char* const CSV_FILENAME = "cities.csv";
 
-int levenshtein(const char *s1, const char *s2) {
-	int len1 = strlen(s1);
-	int len2 = strlen(s2);
-
+int levenshtein(const char *s1, int len1, const char *s2, int len2) {
 	const int rows = len1 + 1;
 	const int cols = len2 + 1;
 	int* matrix = (int*)malloc(rows * cols * sizeof(int));
@@ -38,23 +35,43 @@ int levenshtein(const char *s1, const char *s2) {
 		}
 	}
 
-	printf("Dist for '%s' to '%s' is %d\n", s1, s2, matrix[rows*cols-1]);
+	// printf("Dist for '%s' to '%s' is %d\n", s1, s2, matrix[rows*cols-1]);
 
 	return matrix[rows * cols - 1];
 }
 
 
 int match(const char **strings, int slen, const char **cities, int clen) {
+	int slengths[slen];
+	int clengths[clen];
+
+	for (int i = 0; i < slen; i++) {
+		slengths[i] = strlen(strings[i]);
+	}
+	for (int i = 0; i < clen; i++) {
+		clengths[i] = strlen(cities[i]);
+	}
+
 	int smallest = INT_MAX;
-	int index = 0;
+	int sindex = 0;
+	int cindex = 0;
 	for (int i = 0; i < slen; i++) {
 		for (int j = 0; j < clen; j++) {
-			int dist = levenshtein(strings[i], cities[j]);
+			int dist = levenshtein(
+				strings[i], slengths[i], cities[j], clengths[j]);
 			if (dist < smallest) {
 				smallest = dist;
-				index = j;
+				sindex = i;
+				cindex = j;
+			} else if (dist == smallest &&
+					abs(slengths[i] - clengths[j]) <
+					abs(slengths[sindex] - clengths[cindex])) {
+				sindex = i;
+				cindex = j;
 			}
 		}
 	}
-	return index;
+
+	const int threshold = strlen(strings[sindex]) / 2 + 1;
+	return smallest <= threshold ? cindex : -1;
 }

@@ -56,7 +56,7 @@ def determine_city(tokens):
     if index >= 0:
         return CITIES[index]
 
-    return NONE
+    return None
 
 
 def get_route(msg):
@@ -69,8 +69,10 @@ def get_route(msg):
         """Returns a slice of the tokens list starting at index start_idx."""
         end_idx = min(start_idx + TOKEN_LOOKAHEAD, len(tokens))
         words = ['from', 'to', 'on']
-        while end_idx - start_idx > 1 and tokens[end_idx-1] in words:
-            end_idx -= 1
+        for i in xrange(start_idx + 1, end_idx):
+            if tokens[i] in ['from', 'to', 'on']:
+                end_idx = i
+                break
         return tokens[start_idx:end_idx]
 
     for i in xrange(len(tokens) - 1):
