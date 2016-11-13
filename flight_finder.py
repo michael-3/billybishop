@@ -18,12 +18,7 @@ def load_iata_codes():
 
 
 IATA_CODES = load_iata_codes()
-
-
-DEFAULT_ORIGIN = 'SFO'
-DEFAULT_DEPARTURE_DATE = '2016-11-12'
-NUM_RESULTS = 10
-
+NUM_RESULTS = 4
 
 def get_api_key():
     return os.environ['AMADEUS_KEY']
