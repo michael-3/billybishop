@@ -76,19 +76,24 @@ def find_flights(message):
 
 def reask(departure_date, destination, origin):
     """Returns a message that prompts for missing information."""
-    mapping = {
-        (False, False, False): 'Please provide flight details',
-        (False, False, True): 'Please provide destination and departure date',
-        (False, True, False): 'Please provide origin and departure date',
-        (True, False, False): 'Please provide origin and destination',
-        (False, True, True): 'Please provide departure time',
-        (True, False, True): 'Please provide destination',
-        (True, True, False): 'Please provide origin'
-    }
     response = {}
-    response['new_message'] = mapping[(departure_date is not None),
-                              (destination is not None),
-                              (origin is not None)]
+
+    if (not departure_date) and (not destination) and (not origin):
+        response['message'] = 'Let us know your travel plans!'
+    elif (not departure_date) and (not destination) and origin:
+        response['message'] = 'Where do you want to go from {0}, and when are you leaving?'.format(origin)
+    elif (not departure_date) and destination and (not origin):
+        response['message'] = 'Nice, {0} is great this time of year! When are you leaving, and where from?'.format(destination)
+    elif departure_date and (not destination) and (not origin):
+        response['message'] = 'That\'s a good time for a trip! Where are you travelling between?'
+    elif (not departure_date) and destination and origin:
+        response['message'] = 'Sounds like a great trip! When would you like to leave?'
+    elif departure_date and (not destination) and origin:
+        response['message'] = 'Where are you planning to go?'
+    elif departure_date and destination and (not origin):
+        response['message'] = 'That\'s a great time to visit {0}! Where will you be departing from?'
+      
+
     if departure_date:
         response['departure_date'] = departure_date
     if destination:
