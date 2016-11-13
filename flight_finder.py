@@ -100,7 +100,7 @@ def reask(departure_date, destination, origin):
 
     response['status'] = 'FAILURE'
 
-    return json.dumps(response)
+    return response
 
 # for testing (for example: ./flight_finder.py BOM | python -m json.tool)
 if __name__ == '__main__':
