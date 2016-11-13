@@ -44,15 +44,12 @@ def find_flights(message):
     origin = route.get('origin', None)
     destination = route.get('destination', None)
 
-    print destination
-    print message
 
     departure_date = get_departure(message)
 
     if departure_date:
         departure_date = departure_date['departure']
 
-    print departure_date
 
     if not (departure_date and origin and destination):
         return reask(
