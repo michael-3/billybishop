@@ -6,7 +6,7 @@ import csv
 import os
 import simplejson as json
 import sys
-
+from top_destinations import get_top_destinations
 
 def load_iata_codes():
     """Loads city->airport code mappings from cities.csv."""
@@ -30,6 +30,13 @@ def get_flight_searcher():
 
 
 def find_flights(message, origin=None, destination=None, departure_date=None):
+
+    if message.lower().find('top') != -1:
+      if origin:
+        return get_top_destinations(IATA_CODES[origin.lower()])
+      else:
+        return get_top_destinations()
+
     """Parses the message and returns low fare flights."""
     route = get_route(message)
     
