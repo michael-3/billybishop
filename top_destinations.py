@@ -28,7 +28,7 @@ def get_top_destinations(origin=DEFAULT_ORIGIN):
     print amadeus_resp
     resp = dict()
     resp['status'] = 'INTELLIGENCE'
-    resp['message'] = 'The top areas to visit are: '
+    resp['message'] = 'The top areas to visit from {0} are: '.format(origin)
     for dest in amadeus_resp['results'][:-1]:
       resp['message'] += dest['destination'] + ', '
     resp['message'] += amadeus_resp['results'][-1]['destination']
