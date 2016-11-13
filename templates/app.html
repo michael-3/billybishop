@@ -111,6 +111,18 @@
         return flightInfo.message;
       }
 
+      if(flightInfo.status == 400){
+        if(flightInfo.hasOwnProperty("origin")){
+          flightOrder.origin = flightInfo.origin;
+        }
+
+        if(flightInfo.hasOwnProperty("destination")){
+          flightOrder.destination = flightInfo.destination;
+        }
+
+        return flightInfo.message;
+      }
+
       console.log(flightInfo);
       var results = flightInfo.results;
       console.log(results);
