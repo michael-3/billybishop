@@ -8,6 +8,9 @@ import simplejson as json
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+@app.route('/app')
+def get_app():
+    return render_template('app.html')
 
 @app.route('/')
 def main_app():

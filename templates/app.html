@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Billy Bishop Bot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/css/roboto.css" rel="stylesheet">
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="static/css/my-styles.css?id=123" rel="stylesheet" media="screen">
+    <script src="static/js/jquery.js"> </script>
+    <script src="static/js/typed.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="app-container">
+      <div id="mascot-section" class="col-md-6 col-md-offset-3">
+        <img src="static/img/billy-head.png" id="center-demo">
+        <div id="greeting">
+        </div>
+      </div>
+      <div>
+        <div id="app-content">
+          <div id="main-input-form">
+            <form>
+            <div id="main-input-box" class="col-md-6 col-md-offset-3">
+              <input id="main-input-field" type="text"> 
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Card Projects -->
+        <div class="col-md-10 col-md-offset-1" id="results">
+        </div>
+    </div>
+  </div>
+
+    <script type="text/javascript">
+    var flightOrder = {departure_date: null, destination: null, origin: null};
+
+
+    $("#main-input-field").keypress(function(event) {
+      if(event.which == 13) {
+          event.preventDefault();
+          sendApiRequest($("#main-input-field").val());
+          $("#main-input-field").val("");
+      }
+    });
+
+    $(function(){
+      $("#greeting").typed({
+        strings: ["<h1> Hi, let's get started </h1>"],
+        typeSpeed: 30,
+        showCursor: false
+      });
+    });
+
+    function sendApiRequest(text){
+      updateChat(text, "user");
+      var optionalParams = "";
+      
+
+      if(flightOrder.origin!=null){
+          optionalParams += "&origin=" + flightOrder.origin;
+      }
+
+      if(flightOrder.destination!=null){
+          optionalParams += "&destination=" + flightOrder.destination;
+      }
+
+      if(flightOrder.departure_date!=null){
+          optionalParams += "&departure_date=" + flightOrder.departure_date;
+      }
+
+      console.log(text);
+      text += optionalParams;
+      text = encodeURI(text);
+      console.log(text);
+
+      $.get( "/search?query="+text, function( data) {
+          updateChat(processFlightJSON(data),"ai");
+      });
+    }
+
+    function processFlightJSON(flightInfo){
+      var returnString ="";
+      flightInfo = JSON.parse(flightInfo);      
+
+      if(flightInfo.status === "FAILURE"){
+        if(flightInfo.hasOwnProperty("origin")){
+          flightOrder.origin = flightInfo.origin;
+        }
+
+        if(flightInfo.hasOwnProperty("destination")){
+          flightOrder.destination = flightInfo.destination;
+        }
+
+        if(flightInfo.hasOwnProperty("departure_date")){
+          flightOrder.departure_date = flightInfo.departure_date;
+        }
+
+        return flightInfo.message;
+      }
+
+      console.log(flightInfo);
+      var results = flightInfo.results;
+      console.log(results);
+      
+
+      var flightOptions  = parseFlightResults(results);
+      returnString = "Thank you, your results are below";
+
+      displayCards(flightOptions);
+
+      flightOrder = {departure_date: null, destination: null, origin: null};
+      return returnString;
+    }
+
+    function parseFlightResults(results){
+      var flightOptions =  [];
+
+      var i = 0;
+      while(i<4 && i < results.length){
+        var flightOption = {};
+
+        flightOption.total_price = results[i].fare.total_price;
+        flightOption.flight_name = results[i].itineraries[0].outbound.flights[0].operating_airline;
+        flightOption.flight_name += results[i].itineraries[0].outbound.flights[0].flight_number;
+        flightOption.departure_time = results[i].itineraries[0].outbound.flights[0].departs_at;
+        flightOption.route = results[i].itineraries[0].outbound.flights[0].origin.airport;
+        flightOption.route += " to ";
+        flightOption.route += results[i].itineraries[0].outbound.flights[0].destination.airport;
+        var string = flightOption.total_price + " " + flightOption.flight_name + " ";
+        string += flightOption.departure_time + " " + flightOption.route + " ------"; 
+        console.log(string)
+        flightOptions.push(flightOption);
+        i++;
+      }
+
+      return flightOptions;
+    }
+
+    function updateChat(text, from){
+      if(from === "user"){
+        text = '<div style="text-align:right;">' + text +'</div>';
+      }else if(from === "ai"){
+        text = '<div style="text-align:left;">' + text +'</div>';
+      }else{
+        text = '<div>' + text +'</div>';
+      }
+
+      $(text).hide().appendTo("#greeting").fadeIn(1000);
+    }
+
+    function generateCard(flightOption) {
+      var message = flightOption.route + " " + flightOption.departure_time;
+
+
+      var html = "";
+      html+='<div class="col-md-3 card-container"><div class="card"><div class="card-image">';
+      html+='<img class="img-responsive" src="static/img/cities/toronto.jpg">'
+      html+=' <span class="card-title"><a href="'+ "https://google.com/search?q="+flightOption.flight_name+'">';
+      html+=flightOption.flight_name + "</a> $" + flightOption.total_price
+      html+='</span></div><div class="card-content"><p>'+message+'</p></div>';
+      //html+='<div class="card-action"><a href="#" target="new_blank">Link</a></div></div></div>';
+      
+      return $(html);
+    }
+
+    function displayCards(flightOptions){
+      var results = $();
+      for(var i = 0; i < flightOptions.length; i ++){
+        generateCard(flightOptions[i]).appendTo("#results");
+      }
+
+      //$("#results").html(results);
+    }
+
+    </script>
+
+  </body>
+</html>
