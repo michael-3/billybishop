@@ -8,4 +8,4 @@ if [[ $version != "2.7" ]]; then
 	exit 1
 fi
 
-pip install python-dateutil amadeus nltk simplejson && echo "SUCCESS"
+pip install python-dateutil amadeus nltk simplejson spacy && echo "SUCCESS"
