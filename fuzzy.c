@@ -74,6 +74,6 @@ int match(const char **strings, int slen, const char **cities, int clen) {
 		}
 	}
 
-	const int threshold = strlen(strings[sindex]) / 2 + 1;
+	const int threshold = slengths[sindex] / 2 + 1;
 	return smallest <= threshold ? cindex : -1;
 }
