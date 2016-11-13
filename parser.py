@@ -118,7 +118,9 @@ def get_departure(msg):
     try:
         """Parses a date somewhere in msg and returns
            a map with key 'departure'."""
-        date_time = dparser.parse(msg, fuzzy=True, yearfirst=True)
+        date_time = dparser.parse(msg, fuzzy=True, yearfirst=True, default=datetime.datetime(1900,1,1))
+        if date_time == datetime.datetime(1900,1,1):
+          return None
     except ValueError:
         return None
     departure = {'departure': str(date_time.date())}
