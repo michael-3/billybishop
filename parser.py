@@ -8,6 +8,7 @@ import os
 import sys
 import spacy
 from spacy.symbols import dobj, pobj, GPE, VERB, ADP
+import datetime
 
 
 def load_city_tokens():
