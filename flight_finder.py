@@ -44,12 +44,10 @@ def find_flights(message):
     origin = route.get('origin', None)
     destination = route.get('destination', None)
 
-
     departure_date = get_departure(message)
 
     if departure_date:
         departure_date = departure_date['departure']
-
 
     if not (departure_date and origin and destination):
         return reask(
@@ -89,7 +87,6 @@ def reask(departure_date, destination, origin):
         response['message'] = 'Where are you planning to go?'
     elif departure_date and destination and (not origin):
         response['message'] = 'That\'s a great time to visit {0}! Where will you be departing from?'
-      
 
     if departure_date:
         response['departure_date'] = departure_date
